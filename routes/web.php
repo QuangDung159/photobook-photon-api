@@ -1,5 +1,7 @@
 <?php
 
+use App\Constant;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -9,8 +11,19 @@
 | It is a breeze. Simply tell Lumen the URIs it should respond to
 | and give it the Closure to call when that URI is requested.
 |
-*/
+ */
 
 $router->get('/', function () use ($router) {
     return $router->app->version();
+});
+
+Route::group(['prefix' => '/api'], function () {
+    Route::group(['prefix' => '/client'], function () {
+        Route::group(['prefix' => '/album'], function () {
+            Route::get(
+                "/get-all",
+                Constant::CONTROLLER_ALBUM . 'getListAlbumAvai'
+            );
+        });
+    });
 });
