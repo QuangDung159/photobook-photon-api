@@ -36,4 +36,26 @@ class Album extends Model
             )
             ->get();
     }
+
+    public static function getAlbumById($albumId)
+    {
+        $albumId = intval($albumId);
+        return DB::table(Constant::TABLE_ALBUM)
+            ->where(
+                Constant::TABLE_ALBUM . '.album_id',
+                '=',
+                $albumId
+            )
+            ->where(
+                Constant::TABLE_ALBUM . '.album_is_deleted',
+                '=',
+                0
+            )
+            ->where(
+                Constant::TABLE_ALBUM . '.album_status',
+                '=',
+                1
+            )
+            ->first();
+    }
 }

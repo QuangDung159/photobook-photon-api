@@ -25,5 +25,12 @@ Route::group(['prefix' => '/api'], function () {
                 Constant::CONTROLLER_ALBUM . 'getListAlbumAvai'
             );
         });
+
+        Route::group(['prefix' => '/photo'], function () {
+            Route::get(
+                '/by-album-id/{albumId}',
+                Constant::CONTROLLER_PHOTO . 'getAllPhotoByAvaiByAlbum'
+            );
+        });
     });
 });
