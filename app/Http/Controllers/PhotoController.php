@@ -19,17 +19,10 @@ class PhotoController extends Controller
             ];
         }
         $listPhoto = Photo::getAllPhotoByAvaiByAlbum($album->album_id);
-        if (count($listPhoto) === 0) {
-            return [
-                'statusCode' => 500,
-                'message' => 'Empty',
-            ];
-        } else {
-            return [
-                'statusCode' => 200,
-                'listPhoto' => $listPhoto,
-                'album' => $album,
-            ];
-        }
+        return [
+            'statusCode' => 200,
+            'listPhoto' => $listPhoto,
+            'album' => $album,
+        ];
     }
 }

@@ -10,16 +10,16 @@ class Album extends Model
     public static function getListAlbumAvai()
     {
         return DB::table(Constant::TABLE_ALBUM)
+            ->select(
+                Constant::TABLE_POST . '.post_panel_image',
+                Constant::TABLE_ALBUM . '.*',
+            )
             ->join(
                 Constant::TABLE_POST,
                 Constant::TABLE_ALBUM . '.album_id',
                 '=',
                 Constant::TABLE_POST . '.album_id'
             )
-            ->select([
-                Constant::TABLE_POST . '.post_panel_image',
-                Constant::TABLE_ALBUM . '.*',
-            ])
             ->where(
                 Constant::TABLE_ALBUM . '.album_status',
                 '=',
